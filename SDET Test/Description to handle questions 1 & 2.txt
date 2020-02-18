@@ -1,0 +1,20 @@
+1) 
+To silenty execute the Install-TextEditor function the Start-Process cmdlet should be:
+-Start-Process -FilePath $SetupFileLocation -ArgumentList '/S' -Verb runas -Wait  
+to run the .exe file as administrator and accept no inputs until it is completed.
+
+
+2)
+For a scenario where the installation fails an else statement with the parameters when the retry installation count goes above 10 or the file path is not valid
+should be created which will execute when the boolean expression is $False and thus be caught as an exception to trigger the Write-Error cmdlet 
+
+
+Logs:
+For instances of a successful installation the Write-Output cmdlet could be used to make the end user aware if one wishes to do so.
+For failed installations the Write-Error cmdlet displays the failed operation.
+Write-Information cmdlet should remain as is because $InformationPreference variable is still set to its default, SilentlyContinue since the script places emphasis on
+silence.
+
+To ensure validity of data eg paths, .exe files throughout the execution of the script:
+One should use the Test-Path cmdlet to check whether the path and .exe file exists
+If any are missing, the cmdlet returns $False. Otherwise, it returns $True.
