@@ -18,8 +18,10 @@ function Install-TextEditor {
                 Start-Process -FilePath $SetupFileLocation -ArgumentList '/S' -Verb runas -Wait
                 Write-Information "Installation completed."
                 Write-Information ""
-                $output = $true
+                if ($output = $true){
                 $retryInstallCount += 0
+                else ($output = $false)
+                $retryInstallCount += 1
             }
             elseif ($retryInstallCount -gt 0 -AND -lt 11) -AND ($Check) {
                 Write-Information "========================================================="
@@ -39,14 +41,8 @@ function Install-TextEditor {
                 $retryInstallCount += 1
                 }  
             }
-           else ($retryInstallCount -gt 10) -OR ($Check) {
+           else ($retryInstallCount -gt 10) -AND ($Check) {
                 # if it fails after 10 attempts
-                Write-Information "========================================================="
-                Write-Information "Installing Text Editor"
-                Write-Information "========================================================="
-                Write-Information "Installation beginning..."
-                Write-Information ""
-                Start-Process -FilePath $SetupFileLocation -ArgumentList '/S' -Verb runas -Wait -ErrorAction Stop
                 Write-Information "Installation failed."
                 Write-Information ""
                 $output = $false
