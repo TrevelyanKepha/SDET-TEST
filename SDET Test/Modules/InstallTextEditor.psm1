@@ -22,7 +22,7 @@ function Install-TextEditor {
                 Write-Output "Installation completed."
                 $retryInstallCount += 0
                 else ($output = $false)
-                Write-Output "Notepadpluspus installation failed. Retrying installation."
+                Write-Information "Notepadpluspus installation failed. Retrying installation."
                 $retryInstallCount += 1
             }
             elseif ($retryInstallCount -gt 0 -AND -lt 11) -AND ($Check) {
@@ -41,7 +41,7 @@ function Install-TextEditor {
                 Write-Output "Installation completed."
                 $retryInstallCount += 0
                 else ($output = $false)
-                Write-Output "Notepadpluspus installation failed. Retrying installation."
+                Write-Information "Notepadpluspus installation failed. Retrying installation."
                 $retryInstallCount += 1
                 }  
             }
