@@ -16,11 +16,13 @@ function Install-TextEditor {
                 Write-Information "Installation beginning..."
                 Write-Information ""
                 Start-Process -FilePath $SetupFileLocation -ArgumentList '/S' -Verb runas -Wait
-                Write-Information "Installation completed."
+                Write-Information "Installation Successful."
                 Write-Information ""
                 if ($output = $true){
+                Write-Output "Installation completed."
                 $retryInstallCount += 0
                 else ($output = $false)
+                Write-Output "Notepadpluspus installation failed. Retrying installation."
                 $retryInstallCount += 1
             }
             elseif ($retryInstallCount -gt 0 -AND -lt 11) -AND ($Check) {
@@ -36,14 +38,17 @@ function Install-TextEditor {
                 Write-Information "Installation completed."
                 Write-Information ""
                 if ($output = $true){
+                Write-Output "Installation completed."
                 $retryInstallCount += 0
                 else ($output = $false)
+                Write-Output "Notepadpluspus installation failed. Retrying installation."
                 $retryInstallCount += 1
                 }  
             }
            else ($retryInstallCount -gt 10) -AND ($Check) {
                 # if it fails after 10 attempts
-                Write-Information "Installation failed."
+                Write-Information ""
+                Write-Output "Installation failed."
                 Write-Information ""
                 $output = $false
             }
